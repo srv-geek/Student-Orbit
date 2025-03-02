@@ -88,7 +88,7 @@ This project is licensed under the **MIT License**.
 ## Contact
 For any queries or support, please reach out to:
 - **Email:** vermashubham.srv@gmail.com
-- **GitHub:** [srv-geek]((https://github.com/srv-geek))
+- **GitHub:** [srv-geek](https://github.com/srv-geek)
 
 ---
 Happy Coding! 🚀
