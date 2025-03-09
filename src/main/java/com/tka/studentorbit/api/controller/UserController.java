@@ -30,9 +30,16 @@ public class UserController {
 	private UserService service;
 
 	@PostMapping("/login-user")
-	public User loginUser(@RequestBody LoginRequest request) {
-		
-		return service.loginUser(request);
+	public Object loginUser(@RequestBody LoginRequest request) {
+
+		User user = service.loginUser(request);
+
+		if (user != null) {
+			return user;
+		} else {
+			return null;
+		}
+
 	}
 
 	@CrossOrigin(methods = RequestMethod.POST)
