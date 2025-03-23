@@ -1,9 +1,6 @@
 package com.tka.studentorbit.api.controller;
 
 import java.util.List;
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,29 +43,42 @@ public class AttendanceController {
 		return attendanceRecordService.getAllAttendanceRecords();
 	}
 	
+	 @GetMapping("/get-attendance-by-faculty/{facultyUsername}")
+	    public List<AttendanceRecord> getAttendanceByFaculty(@PathVariable String facultyUsername) {
+	        return attendanceRecordService.getAttendanceByFaculty(facultyUsername);
+	    }
+	
+	
 	@GetMapping("/get-attendance-by-date-subjet/{date}/{subjectId}")
 	public List<AttendanceRecord> getAllAttendanceRecords(@PathVariable String date,@PathVariable long subjectId){
-
 		return attendanceRecordService.getAllAttendanceRecords(date,subjectId);
-		
 	}
+	
+	@GetMapping("/get-attendance/{user}/{subjectId}/{date}")
+	public List<AttendanceRecord> getAttendanceByFacultySubjectDate(
+	        @PathVariable String user, 
+	        @PathVariable long subjectId, 
+	        @PathVariable String date) {
+	    return attendanceRecordService.getAttendanceByFacultySubjectDate(user, subjectId, date);
+	}
+
 
 	@PostMapping("/take-attendance")
 	public AttendanceRecord createAttendanceRecord(@RequestBody AttendanceRecordRequest request) {
 		User user = userService.getUserByName(request.getUsername());
+		
+	
 		Subject subject = subjectService.getSubjectById(request.getSubjectId());
-		List<Student> students = studentService.getAllStudentsById(request.getStudentIds());
-
+		
 		AttendanceRecord attendanceRecord = new AttendanceRecord();
 		attendanceRecord.setUser(user);
 		attendanceRecord.setSubject(subject);
 		attendanceRecord.setDate(request.getDate());
 		attendanceRecord.setTime(request.getTime());
-		attendanceRecord.setStudents(students);
-		attendanceRecord.setNumberOfStudents(request.getStudentIds().size());
+		attendanceRecord.setStudents(request.getStudents());
+		attendanceRecord.setNumberOfStudents(request.getStudents().size());
 
 		System.out.println(attendanceRecord);
-
 		return attendanceRecordService.saveAttendance(attendanceRecord);
 	}
 }
