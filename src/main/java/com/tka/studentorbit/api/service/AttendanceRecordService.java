@@ -19,22 +19,23 @@ public class AttendanceRecordService {
 
 	public List<AttendanceRecord> getAllAttendanceRecords() {
 		List<AttendanceRecord> records = dao.getAllAttendanceRecords();
-		 
-		List<AttendanceRecord> distinctAttendanceList = records.stream()
-				.collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(AttendanceRecord::getId)))).stream()
-				.collect(Collectors.toList());
-		return distinctAttendanceList;
-		
+
+		return records;
+
 	}
-	
-	public List<AttendanceRecord> getAllAttendanceRecords( String date, long subjectId) {
-		List<AttendanceRecord> records = dao.getAllAttendanceRecords(date,subjectId);
-		 
+
+	public List<AttendanceRecord> getAttendanceByFaculty(String facultyUsername) {
+		return dao.getAttendanceByFaculty(facultyUsername);
+	}
+
+	public List<AttendanceRecord> getAllAttendanceRecords(String date, long subjectId) {
+		List<AttendanceRecord> records = dao.getAllAttendanceRecords(date, subjectId);
+
 		List<AttendanceRecord> distinctAttendanceList = records.stream()
-				.collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(AttendanceRecord::getId)))).stream()
-				.collect(Collectors.toList());
+				.collect(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(AttendanceRecord::getId))))
+				.stream().collect(Collectors.toList());
 		return distinctAttendanceList;
-		
+
 	}
 
 	public AttendanceRecord saveAttendance(AttendanceRecord attendanceRecord) {
@@ -42,7 +43,12 @@ public class AttendanceRecordService {
 		String id = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new java.util.Date());
 
 		attendanceRecord.setId(id);
-		
+
 		return dao.saveAttendance(attendanceRecord);
+	}
+
+	public List<AttendanceRecord> getAttendanceByFacultySubjectDate(String faculty, long subjectId, String date) {
+
+		return dao.getAttendanceByFacultySubjectDate(faculty, subjectId, date);
 	}
 }
