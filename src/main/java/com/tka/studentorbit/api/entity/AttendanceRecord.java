@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class AttendanceRecord {
     
-	@Id
+    @Id
     private String id;
     
     @ManyToOne
@@ -36,10 +36,9 @@ public class AttendanceRecord {
         joinColumns = @JoinColumn(name = "attendance_record_id"),
         inverseJoinColumns = @JoinColumn(name = "student_id")
     )
-    private List<Student> students;
-
+    private Set<Student> students;
     public AttendanceRecord() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public String getId() {
@@ -49,7 +48,6 @@ public class AttendanceRecord {
 	public void setId(String id) {
 		this.id = id;
 	}
-	
 	
 
 	public int getNumberOfStudents() {
@@ -96,11 +94,11 @@ public class AttendanceRecord {
 		this.time = time;
 	}
 
-	public List<Student> getStudents() {
+	public Set<Student> getStudents() {
 		return students;
 	}
 
-	public void setStudents(List<Student> students) {
+	public void setStudents(Set<Student> students) {
 		this.students = students;
 	}
     
