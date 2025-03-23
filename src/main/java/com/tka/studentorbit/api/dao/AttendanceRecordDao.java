@@ -25,6 +25,8 @@ public class AttendanceRecordDao {
 			session = factory.openSession();
 
 			Criteria criteria = session.createCriteria(AttendanceRecord.class);
+			criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+			
 			list = criteria.list();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -34,6 +36,35 @@ public class AttendanceRecordDao {
 		return list;
 	}
 
+	public List<AttendanceRecord> getAttendanceByFacultySubjectDate(String faculty, long subjectId, String date) {
+	    Session session = null;
+	    List<AttendanceRecord> list = null;
+	    try {
+	        session = factory.openSession();
+	        Criteria criteria = session.createCriteria(AttendanceRecord.class);
+	        
+	        // Add filters
+	        criteria.createAlias("user", "u"); // Faculty (User)
+	        criteria.createAlias("subject", "s"); // Subject
+
+	        criteria.add(Restrictions.eq("u.username", faculty));
+	        criteria.add(Restrictions.eq("s.id", subjectId));
+	        criteria.add(Restrictions.eq("date", date));
+
+	        // Remove duplicates
+	        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
+	        list = criteria.list();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (session != null) {
+	        session.close();
+	    }
+	    }
+	    return list;
+	}
+	
 	public List<AttendanceRecord> getAllAttendanceRecords(String date, long subjectId) {
 		Session session = null;
 		List<AttendanceRecord> list = null;
@@ -54,6 +85,22 @@ public class AttendanceRecordDao {
 		}
 		return list;
 	}
+	
+	public List<AttendanceRecord> getAttendanceByFaculty(String facultyUsername) {
+        Session session = factory.openSession();
+        List<AttendanceRecord> list = null;
+        try {
+            Criteria criteria = session.createCriteria(AttendanceRecord.class);
+            criteria.createAlias("user", "u");
+            criteria.add(Restrictions.eq("u.username", facultyUsername));
+            list = criteria.list();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return list;
+    }
 
 	public AttendanceRecord saveAttendance(AttendanceRecord attendanceRecord) {
 		Session session = null;
