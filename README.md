@@ -1,117 +1,117 @@
-Student Orbit
-Project Overview
-Student Orbit is a Spring Boot REST API project designed to streamline the process of managing student attendance in educational institutions. The system allows faculty members to efficiently record attendance for specific subjects and provides interfaces for viewing and managing these records. The project eliminates paperwork, improves accuracy, and simplifies attendance tracking.
+# Student Orbit
 
-Objectives
-Automate Attendance Tracking: Provide a REST API to streamline attendance management and integration with existing educational systems.
+## 📘 Project Overview
+**Student Orbit** is a **Spring Boot REST API** project designed to streamline the process of managing student attendance in educational institutions. The system allows faculty members to efficiently record attendance for specific subjects and provides interfaces for viewing and managing these records. The project eliminates paperwork, improves accuracy, and simplifies attendance tracking.
 
-Ensure Data Accuracy: Automate validation and secure storage of attendance records to minimize errors.
+---
 
-Seamless Integration: Enable smooth integration with educational platforms to enhance faculty and administrative workflows.
+## 🎯 Objectives
+- **Automate Attendance Tracking:** Provide a REST API to simplify attendance management and system integration.
+- **Ensure Data Accuracy:** Automate validation and ensure secure storage of attendance records to reduce errors.
+- **Seamless Integration:** Integrate smoothly with educational platforms to improve faculty and administrative workflows.
 
-Scope
-The SamsTrack project focuses on developing a REST API to handle student attendance, covering essential functionalities related to:
+---
 
-Students
+## 📌 Scope
+The **SamsTrack** project focuses on developing a REST API to manage attendance-related features for:
+- **Students**
+- **Subjects**
+- **Faculty**
+- **Attendance Records**
 
-Subjects
+---
 
-Faculty
+## 🛠 Tech Stack
+- **Backend:** Spring Boot, Java  
+- **Database:** MySQL  
+- **ORM:** Hibernate (JPA)  
+- **Security:** Spring Security  
+- **Build Tool:** Maven  
 
-Attendance Records
+---
 
-Tech Stack
-Backend: Spring Boot, Java
+## 🧭 Controllers
+The project includes the following controllers:
 
-Database: MySQL
+### 1. **User Controller**
+- Manages user authentication and role-based access.
+- Handles user registration and login.
 
-ORM: Hibernate (JPA)
+### 2. **Student Controller**
+- CRUD operations for student management.
+- Fetch student details.
 
-Security: Spring Security
+### 3. **Subject Controller**
+- Manage subject data and assign subjects to students.
 
-Build Tool: Maven
+### 4. **Student Attendance Controller**
+- Mark and fetch attendance records.
+- Generate student attendance reports.
 
-Controllers
-The project consists of the following controllers:
+---
 
-1. User Controller
-Manages user authentication and role-based access.
+## ⚙️ Installation and Setup
 
-Handles user registration and login functionalities.
+### ✅ Prerequisites
+- Java 17+
+- Maven
+- MySQL/PostgreSQL
 
-2. Student Controller
-CRUD operations for student management (create, read, update, delete).
-
-Fetch student details.
-
-3. Subject Controller
-Manages subjects and their assignments to students.
-
-Allows faculty to add or modify subject details.
-
-4. Student Attendance Controller
-Handles attendance marking and retrieval.
-
-Tracks student attendance records and provides reports.
-
-Installation and Setup
-Prerequisites:
-Java 17+
-
-Maven or Gradle
-
-MySQL/PostgreSQL database setup
-
-Steps:
-Clone the repository:
-
-sh
-Copy
-Edit
+### 🚀 Steps
+```sh
 git clone https://github.com/your-repository/student-orbit.git
-Navigate to the project directory:
-
-sh
-Copy
-Edit
 cd student-orbit
-Configure database connection in application.properties:
+````
 
-properties
-Copy
-Edit
+Update `application.properties`:
+
+```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/student_orbit
 spring.datasource.username=root
 spring.datasource.password=yourpassword
+```
+
 Build and run the project:
 
-sh
-Copy
-Edit
+```sh
 mvn spring-boot:run
-API Endpoints
-Controller	Method	Endpoint	Description
-User Controller	POST	/api/users/register	Register a new user
-User Controller	POST	/api/users/login	User login
-Student Controller	GET	/api/students	Fetch all students
-Student Controller	POST	/api/students	Add a new student
-Subject Controller	GET	/api/subjects	Retrieve subjects
-Subject Controller	POST	/api/subjects	Add a new subject
-Student Attendance Controller	POST	/api/attendance	Mark attendance
-Student Attendance Controller	GET	/api/attendance/{studentId}	Get attendance records for a student
+```
 
-Contribution
-Feel free to contribute to this project by submitting a pull request or reporting issues.
+---
 
-License
-This project is licensed under the MIT License.
+## 🔗 API Endpoints
 
-Contact
-For any queries or support, please reach out to:
+| Controller               | Method | Endpoint                      | Description                  |
+| ------------------------ | ------ | ----------------------------- | ---------------------------- |
+| User Controller          | POST   | `/api/users/register`         | Register a new user          |
+| User Controller          | POST   | `/api/users/login`            | Login user                   |
+| Student Controller       | GET    | `/api/students`               | Get all students             |
+| Student Controller       | POST   | `/api/students`               | Add a student                |
+| Subject Controller       | GET    | `/api/subjects`               | Get all subjects             |
+| Subject Controller       | POST   | `/api/subjects`               | Add a subject                |
+| Student Attendance Ctrl. | POST   | `/api/attendance`             | Mark attendance              |
+| Student Attendance Ctrl. | GET    | `/api/attendance/{studentId}` | Get attendance by student ID |
 
-Email: vermashubham.srv@gmail.com
+---
 
-GitHub: srv-geek
+## 🤝 Contribution
 
-Happy Coding! 🚀
+Feel free to contribute by submitting pull requests or reporting issues.
+
+---
+
+## 📄 License
+
+Licensed under the **MIT License**.
+
+---
+
+## 📬 Contact
+
+* **Email:** [vermashubham.srv@gmail.com](mailto:vermashubham.srv@gmail.com)
+* **GitHub:** [srv-geek](https://github.com/srv-geek)
+
+---
+
+**Happy Coding! 🚀**
 
