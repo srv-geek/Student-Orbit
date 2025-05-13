@@ -15,12 +15,12 @@ The **SamsTrack** project focuses on developing a **REST API** to handle student
 - **Faculty**
 - **Attendance Records**
 
-## Tech Stack
-- **Backend:** Spring Boot, Java
-- **Database:** MySQL/PostgreSQL (or any relational database)
-- **ORM:** Hibernate/JPA
-- **Security:** Spring Security (if authentication is implemented)
-- **Build Tool:** Maven/Gradle
+Tech Stack  
+Backend: Spring Boot, Java  
+Database: MySQL  
+ORM: Hibernate (JPA)  
+Security: Spring Security (JWT-based authentication)  
+Build Tool: Maven
 
 ## Controllers
 The project consists of the following controllers:
